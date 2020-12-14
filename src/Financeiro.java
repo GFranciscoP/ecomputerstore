@@ -8,6 +8,9 @@
 /* Data: dez 2020                      */
 /*-------------------------------------*/
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Financeiro {
     private static float caixaTotal;
 
@@ -17,5 +20,17 @@ public class Financeiro {
 
     public static void setCaixaTotal(float caixaTotal) {
         Financeiro.caixaTotal = caixaTotal;
+    }
+
+    public float mediaMargem(Estoque estoque){
+        Estatistica st = new Estatistica();
+        ArrayList<Float> margens = new ArrayList<Float>();
+        ArrayList<Produto> p = new ArrayList<Produto>();
+        p = estoque.getProdutos();
+        for (int i = 0; i < p.size(); i++){
+            margens.add(p.get(i).getMargemLucro());
+        }
+        float media = st.media(margens);
+        return media;
     }
 }
